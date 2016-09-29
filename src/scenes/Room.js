@@ -1,9 +1,11 @@
 import React from 'react';
 import {
+  ScrollView,
   View,
   Text,
   StyleSheet
 } from 'react-native';
+import Layout from '../configs/Layout';
 
 import Gallery from '../components/room/Gallery';
 import Description from '../components/room/Description';
@@ -17,7 +19,7 @@ export default class Room extends React.Component{
     const {latitude,longitude} = this.props.room.location;
     console.log(this.props.room);
     return(
-      <View>
+      <ScrollView style={Layout.container}>
         <Gallery photos={photos} price={price}/>
         <View style={styles.container}>
           <Headline title={title} ratingValue={ratingValue} reviews={reviews} user={user}/>
@@ -25,7 +27,7 @@ export default class Room extends React.Component{
           <Map latitude={latitude} longitude={longitude}/>
           <Book />
         </View>
-      </View>
+      </ScrollView>
     )
   }
 }

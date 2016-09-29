@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 
 import List from '../components/room/List';
+import Layout from '../configs/Layout';
 import Backend from '../configs/Backend';
 
 export default class RoomList extends React.Component{
@@ -13,9 +14,10 @@ export default class RoomList extends React.Component{
 
   render(){
     return(
-        <List
-          rooms={this.state.rooms}
-        />
+      <View style={[Layout.container, {marginBottom: 44}]}>
+        <List rooms={this.state.rooms} />
+      </View>
+
     )
   }
 

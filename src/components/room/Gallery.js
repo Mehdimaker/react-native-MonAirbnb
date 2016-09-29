@@ -27,11 +27,10 @@ export default class Gallery extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: 200,
+    height: 250,
   },
   photo: {
     flex: 1,
-    height: 200,
   },
   containerPrice:{
     backgroundColor: 'rgba(0, 0, 0, 0.8)',

@@ -6,6 +6,8 @@ import {
   View,
 } from 'react-native';
 
+import Layout from '../../configs/Layout';
+
 export default class Book extends React.Component {
 
   render(){
@@ -13,7 +15,7 @@ export default class Book extends React.Component {
       <TouchableHighlight
         style={styles.button}
         onPress={() => console.log('test')}
-        underlayColor={'rgba(254, 145,0, 0.6)'}
+        underlayColor={Layout.mainColorOpacity}
         >
           <Text style={styles.textButton}>
             Book
@@ -25,7 +27,7 @@ export default class Book extends React.Component {
 
 const styles = StyleSheet.create({
   button:{
-    backgroundColor: 'rgb(254, 145, 0)',
+    backgroundColor: Layout.mainColor,
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',

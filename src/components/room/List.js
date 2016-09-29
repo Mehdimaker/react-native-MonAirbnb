@@ -10,6 +10,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Row from './Row';
+import Layout from '../../configs/Layout';
 
 export default class List extends React.Component{
   constructor(props) {
@@ -18,6 +19,7 @@ export default class List extends React.Component{
     this.state = {
       dataSource: ds.cloneWithRows(props.rooms),
     };
+
   }
 
   componentWillReceiveProps(nextProps){
@@ -25,12 +27,13 @@ export default class List extends React.Component{
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(nextProps.rooms)
       });
+      console.log(JSON.stringify(nextProps.rooms));
     }
   }
 
   //declarer les fonctions sans les binder
   renderRow = (rowData,sectionID,rowID) => {
-    const goToRoom = () => Actions.room({room:rowData}); 
+    const goToRoom = () => Actions.room({room:rowData});
     return(
       <TouchableHighlight onPress={goToRoom} underlayColor={'transparent'}>
         <View>
@@ -43,7 +46,6 @@ export default class List extends React.Component{
   renderSeparator = (sectionID, rowID) => {
     return(
       <View key={rowID} style={styles.separator}/>
-
     )
   }
 
@@ -55,6 +57,7 @@ export default class List extends React.Component{
         renderRow={this.renderRow}
         renderSeparator={this.renderSeparator}
         enableEmptySections={true}
+        contentContainerStyle={{paddingTop: Layout.marginDefault}}
       />
     )
   }
