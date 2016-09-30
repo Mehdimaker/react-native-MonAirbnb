@@ -31,14 +31,24 @@ export default {
       color:'white'
     },
     tabBar:{
-      backgroundColor: secondColor,
-      borderTopWidth: 2,
-      borderTopColor: greyColor,
+      backgroundColor: greyColor,
+      //borderTopWidth: 2,
+      //borderTopColor: greyColor,
     }
   },
   container: {
     flex: 1,
     paddingTop: navbarHeight,
-    backgroundColor: secondColor,
   }
 }
+
+/*
+<Text style={Platform.select({
+  ios: {
+    marginTop: 10
+  },
+  android:{
+    marginTop: 20
+  }
+})}/>
+*/

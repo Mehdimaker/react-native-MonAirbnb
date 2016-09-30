@@ -3,8 +3,9 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
 } from 'react-native';
+
+import Image from 'react-native-image-progress';
 
 export default class Avatar extends React.Component {
   render () {

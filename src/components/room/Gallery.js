@@ -3,21 +3,26 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   Dimensions
 } from 'react-native';
+
+import Image from 'react-native-image-progress';
 
 export default class Gallery extends React.Component {
   render () {
     //const {width} = Dimensions.get('window');
     return (
       <View style={styles.container}>
-        <Image source={{uri: this.props.photos[1]}} style={[styles.photo]}>
+        <Image
+          source={{uri: this.props.photos[1]}}
+          style={[styles.photo]}>
+
           <View style={styles.containerPrice} >
             <Text style={styles.textPrice} >
               {this.props.price}
             </Text>
           </View>
+
         </Image>
       </View>
     )

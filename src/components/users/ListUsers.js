@@ -3,28 +3,25 @@ import {
   View,
   StyleSheet,
   ListView,
-  TouchableHighlight,
   Text
 } from 'react-native';
-
-import Icon from 'react-native-vector-icons/Ionicons';
-import Row from './Row';
 import Layout from '../../configs/Layout';
 
-export default class List extends React.Component{
+
+export default class ListUsers extends React.Component{
   constructor(props) {
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(props.rooms),
+      dataSource: ds.cloneWithRows(props.users),
     };
 
   }
 
   componentWillReceiveProps(nextProps){
-    if(nextProps.rooms){
+    if(nextProps.users){
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(nextProps.rooms)
+        dataSource: this.state.dataSource.cloneWithRows(nextProps.users)
       });
     }
   }
@@ -32,11 +29,15 @@ export default class List extends React.Component{
   //declarer les fonctions sans les binder
   renderRow = (rowData,sectionID,rowID) => {
     return(
-      <TouchableHighlight onPress={() => this.props.onPress(rowData)} underlayColor={'transparent'}>
-        <View>
-          <Row key={rowID} {...rowData}/>
-        </View>
-      </TouchableHighlight>
+      <View>
+        <Text>Name: {rowData.name}</Text>
+        <Text>Username: {rowData.username}</Text>
+        <Text>Email: {rowData.email}</Text>
+        <Text>Phone: {rowData.phone}</Text>
+        <Text>Website: {rowData.website}</Text>
+        <Text>Name: {rowData.company.name}</Text>
+      </View>
+
     )
   }
 
@@ -46,7 +47,7 @@ export default class List extends React.Component{
     )
   }
 
-  render (){
+  render (){ 
     return(
       <ListView
         style={styles.scrollView}
@@ -60,13 +61,11 @@ export default class List extends React.Component{
   }
 }
 
-List.defaultProps = {
-  rooms: [],
-  onPress: ()=>null,
+ListUsers.defaultProps = {
+  users: [],
 }
-List.propTypes = {
-  rooms: React.PropTypes.array,
-  onPress: React.PropTypes.func
+ListUsers.propTypes = {
+  users: React.PropTypes.array,
 }
 
 const styles = StyleSheet.create({

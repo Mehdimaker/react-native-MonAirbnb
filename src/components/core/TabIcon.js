@@ -6,7 +6,7 @@ export default class TabIcon extends React.Component{
   render(){
     const {color, name, selected} = this.props;
     return(
-      <Icon name={this.props.name} size={27} color={selected? Layout.mainColor : Layout.greyColor} />
+      <Icon name={this.props.name} size={27} color={selected? Layout.mainColor : Layout.secondColor} />
     )
   }
 }
