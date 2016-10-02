@@ -3,7 +3,8 @@ import {
   View,
   StyleSheet,
   ListView,
-  Text
+  Text,
+  RefreshControl
 } from 'react-native';
 import Layout from '../../configs/Layout';
 
@@ -14,8 +15,18 @@ export default class ListUsers extends React.Component{
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows(props.users),
+      refreshing: false,
     };
 
+  }
+
+  _onRefresh() {
+    this.setState({refreshing: true});
+    /*
+    fetch().then(() => {
+      this.setState({refreshing: false});
+    });
+    */
   }
 
   componentWillReceiveProps(nextProps){
@@ -47,7 +58,7 @@ export default class ListUsers extends React.Component{
     )
   }
 
-  render (){ 
+  render (){
     return(
       <ListView
         style={styles.scrollView}
@@ -56,6 +67,12 @@ export default class ListUsers extends React.Component{
         renderSeparator={this.renderSeparator}
         enableEmptySections={true}
         contentContainerStyle={{paddingTop: Layout.marginDefault}}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh.bind(this)}
+          />
+        }
       />
     )
   }

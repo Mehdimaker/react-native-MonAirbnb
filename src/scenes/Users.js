@@ -20,7 +20,7 @@ export default class Users extends React.Component{
   }
 
   componentDidMount(){
-    // ajouter async plutot dans le did mount 
+    // ajouter async plutot dans le did mount
     // mettre setimeout
     // si au bout de 5 sec pas de reponse afficher alert pas de connexion
     // donc recuperer data su asynstorage
