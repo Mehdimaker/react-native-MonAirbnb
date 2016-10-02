@@ -7,7 +7,7 @@ import {
 import {inject, observer} from 'mobx-react/native';
 
 @inject('AppStore') @observer
-export default class MyTextInput extends React.Component{
+export default class MyTextInputStored extends React.Component{
   render() {
     return (
       <TextInput
@@ -20,4 +20,4 @@ export default class MyTextInput extends React.Component{
   }
 }
 
-MyTextInput.wrappedComponent.defaultProps = {}
+MyTextInputStored.wrappedComponent.defaultProps = {}

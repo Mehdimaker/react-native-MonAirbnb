@@ -1,11 +1,11 @@
 import React from 'react';
 import {
   ScrollView,
+  View,
   Text,
   TouchableOpacity,
   StyleSheet,
   TextInput,
-  DatePickerIOS,
   Picker,
   Switch,
   Modal
@@ -17,8 +17,9 @@ import AppStore from '../store/AppStore';
 
 import Layout from '../configs/Layout';
 import Label from '../components/form/Label';
-import MyTextInput from '../components/form/MyTextInput';
-import RenderAppStore from '../components/form/RenderAppStore';
+import MyTextInputStored from '../components/form/MyTextInputStored';
+import MyDatePicker from '../components/form/MyDatePicker';
+import MyPicker from '../components/form/MyPicker';
 
 
 
@@ -30,61 +31,65 @@ export default class SignUp extends React.Component{
     date: new Date(),
   }
 
+  changeDate = (date) => {
+    this.setState({date})
+  }
+
+  changeGender = (gender) => {
+    this.setState({gender})
+  }
+
   render(){
 
     return(
-        <ScrollView style={styles.container}>
 
-          <Label title='Votre Nom'>
-            <MyTextInput
-              style={styles.textInput}
-              placeholder="Votre Nom"/>
-          </Label>
+      <ScrollView style={styles.container}>
+        <View style={{marginBottom:20,alignItems:'center'}}>
+          <Text style={{color:'white',fontWeight:'bold',fontSize:40}}>
+          MonAirbnb
+          </Text>
+        </View>
 
-          <Label title='Votre date de naissance'>
-            <DatePickerIOS
-              style={styles.datePicker}
-              date={this.state.date}
-              mode="date"
-              onDateChange={(date) => this.setState({date})}/>
-          </Label>
+        <Label title='Votre Nom'>
+          <MyTextInputStored
+            style={styles.textInput}
+            placeholder="Votre Nom"/>
+        </Label>
 
-          <Label title='Etes vous un homme ou une femme ?'>
-            <Picker
-              style={styles.picker}
-              selectedValue={this.state.gender}
-              onValueChange={(gender) => this.setState({gender})}>
-              <Picker.Item label="Homme" value="homme" />
-              <Picker.Item label="Femme" value="femme" />
-            </Picker>
-          </Label>
+        <Label title='Votre date de naissance'>
+          <MyDatePicker
+            date={this.state.date}
+            changeDate={this.changeDate}/>
+        </Label>
 
-          <Label title='Etes vous host ?'>
-            <Switch
-              value= {this.state.isHost}
-              onValueChange={() => this.setState({isHost: !this.state.isHost})}/>
-              <Text> is Hoste</Text>
-              
-          </Label>
-          <TouchableOpacity onPress={() => {
+        <Label title='Etes vous un homme ou une femme ?'>
+          <MyPicker
+            gender={this.state.gender}
+            changeGender={this.changeGender}/>
+        </Label>
+
+        <Label title='Etes vous host ?'>
+          <Switch
+            value= {this.state.isHost}
+            onValueChange={() => this.setState({isHost: !this.state.isHost})}/>
+            <Text> is Hoste</Text>
+
+        </Label>
+
+        <TouchableOpacity
+          style={styles.buttonSubmit}
+          onPress={() => {
             alert(JSON.stringify(AppStore.getValues()));
             //alert(JSON.stringify(this.state));
             Actions.tabbar({type: ActionConst.RESET});
           }}>
-            <Text>
-              Sign up
-            </Text>
-          </TouchableOpacity>
 
-          {/*<Modal
-           animationType={"slide"}
-           transparent={false}
-           visible={this.state.modalVisible}
-           onRequestClose={() => {alert("Modal has been closed.")}}
-           >
-           <Text>hey</Text>
-           </Modal>*/}
-        </ScrollView>
+          <Text style={{color:'white',fontWeight:'bold',fontSize:24}}>
+            Sign up
+          </Text>
+
+        </TouchableOpacity>
+      </ScrollView>
     )
   }
 }
@@ -92,14 +97,20 @@ const styles = StyleSheet.create({
   container:{
     flex:1,
     backgroundColor: Layout.mainColor,
+    padding:15,
     paddingTop:40,
   },
   textInput:{
     backgroundColor: Layout.mainColor,
     height:40,
   },
-  datePicker:{
-  },
-  picker:{
+  buttonSubmit:{
+    flex:1,
+    backgroundColor:'grey',
+    height:50,
+    justifyContent:'center',
+    alignItems: 'center',
+
+
   }
 })

@@ -17,14 +17,14 @@ export default class ErrorModal extends React.Component {
 
     componentDidMount() {
         Animated.timing(this.state.offset, {
-            duration: 150,
+            duration: 350,
             toValue: 0
         }).start();
     }
 
     closeModal() {
         Animated.timing(this.state.offset, {
-            duration: 150,
+            duration: 350,
             toValue: -deviceHeight
         }).start(Actions.pop);
     }
@@ -32,7 +32,7 @@ export default class ErrorModal extends React.Component {
     componentWillReceiveProps(nextProps){
       if (nextProps.showModal){
         Animated.timing(this.state.offset, {
-            duration: 150,
+            duration: 350,
             toValue: 0
         }).start();
       }
