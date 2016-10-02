@@ -13,14 +13,15 @@ import {
 
 import {Actions , ActionConst} from 'react-native-router-flux';
 
+import AppStore from '../store/AppStore';
+
 import Layout from '../configs/Layout';
 import Label from '../components/form/Label';
-import TextInputWidget from '../components/form/TextInputWidget';
-import SignUpStore from '../store/SignUpStore';
-import {Provider, observer} from 'mobx-react/native';
-import TextWidget from '../components/form/TextWidget';
+import MyTextInput from '../components/form/MyTextInput';
+import RenderAppStore from '../components/form/RenderAppStore';
 
-@observer
+
+
 export default class SignUp extends React.Component{
   state = {
     name : '',
@@ -30,19 +31,13 @@ export default class SignUp extends React.Component{
   }
 
   render(){
+
     return(
-      <Provider SignUpStore={SignUpStore} >
-      {/*en general mettre le provider au dessu du root*/}
         <ScrollView style={styles.container}>
 
-          <TextInputWidget/>
-          <TextWidget/>
-          
           <Label title='Votre Nom'>
-            <TextInput
+            <MyTextInput
               style={styles.textInput}
-              onChangeText={(name) => this.setState({name})}
-              value={this.state.name}
               placeholder="Votre Nom"/>
           </Label>
 
@@ -68,11 +63,11 @@ export default class SignUp extends React.Component{
             <Switch
               value= {this.state.isHost}
               onValueChange={() => this.setState({isHost: !this.state.isHost})}/>
-              <Text> is Host</Text>
+              <Text> is Hoste</Text>
+              
           </Label>
-
           <TouchableOpacity onPress={() => {
-            alert(JSON.stringify(SignUpStore.getValues()));
+            alert(JSON.stringify(AppStore.getValues()));
             //alert(JSON.stringify(this.state));
             Actions.tabbar({type: ActionConst.RESET});
           }}>
@@ -90,7 +85,6 @@ export default class SignUp extends React.Component{
            <Text>hey</Text>
            </Modal>*/}
         </ScrollView>
-      </Provider>
     )
   }
 }

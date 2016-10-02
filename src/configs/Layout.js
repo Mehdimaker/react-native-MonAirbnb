@@ -18,7 +18,7 @@ export default {
   greyColor,
   navbarHeight,
   marginDefault,
-  scene:{
+  navigationBar:{
     navigationBarStyle:{
       backgroundColor: mainColor,
       borderBottomColor: 'transparent'
@@ -26,15 +26,12 @@ export default {
     titleStyle:{
       color: 'white',
       fontWeight: 'bold'
-    },
-    backButtonTextStyle:{
-      color:'white'
-    },
-    tabBar:{
-      backgroundColor: greyColor,
-      //borderTopWidth: 2,
-      //borderTopColor: greyColor,
     }
+  },
+  tabBar:{
+    backgroundColor: greyColor,
+    //borderTopWidth: 2,
+    //borderTopColor: greyColor,
   },
   container: {
     flex: 1,

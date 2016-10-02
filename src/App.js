@@ -9,6 +9,9 @@ import {
 
 import { Router, Scene, ActionConst } from 'react-native-router-flux';
 
+import {Provider, observer} from 'mobx-react/native';
+import AppStore from './store/AppStore';
+
 import Layout from './configs/Layout';
 import Room from './scenes/Room';
 import RoomList from './scenes/RoomList';
@@ -18,7 +21,7 @@ import Users from './scenes/Users';
 import Test from './scenes/Test';
 import SignUp from './scenes/SignUp';
 
-
+@observer
 export default class App extends React.Component {
 
   componentWillMount(){
@@ -30,57 +33,54 @@ export default class App extends React.Component {
   render() {
 
     return (
-      <Router>
-        <Scene key="root" >
-          <Scene key='signup' hideNavBar component={SignUp} title='Sign up' />
-          <Scene  key="tabbar" tabs={true} style={Layout.scene.tabBar} type={ActionConst.JUMP}>
+      <Provider AppStore={AppStore} >
+        <Router>
+          <Scene key="root" >
+            <Scene key='signup' hideNavBar component={SignUp} title='Sign up' />
 
-              {/*possibilité de : {...Layout.navigationBar} sans toute les scenes  */}
-              <Scene
-                initial
-                key="roomList"
-                component={RoomList}
-                title="MonAirbnb"
-                icon={(props)=> <TabIcon {...props} name='ios-home'/>}
-                navigationBarStyle={Layout.scene.navigationBarStyle}
-                titleStyle={Layout.scene.titleStyle}
+            <Scene  key="tabbar" tabs={true} style={Layout.tabBar} type={ActionConst.JUMP}>
 
-                />
-              <Scene
-                key="profile"
-                component={Profile}
-                title="Profile"
-                icon={(props) => <TabIcon {...props} name='ios-contact'/>}
-                navigationBarStyle={Layout.scene.navigationBarStyle}
-                titleStyle={Layout.scene.titleStyle}
-                />
-              <Scene
-                key="users"
-                component={Users}
-                title="Users"
-                icon={(props) => <TabIcon {...props} name='ios-contacts'/>}
-                navigationBarStyle={Layout.scene.navigationBarStyle}
-                titleStyle={Layout.scene.titleStyle}
-                />
+                <Scene
+                  initial
+                  key="roomList"
+                  component={RoomList}
+                  title="MonAirbnb"
+                  icon={(props)=> <TabIcon {...props} name='ios-home'/>}
+                  {...Layout.navigationBar}
+                  />
+                <Scene
+                  key="profile"
+                  component={Profile}
+                  title="Profile"
+                  icon={(props) => <TabIcon {...props} name='ios-contact'/>}
+                  {...Layout.navigationBar}
+                  />
+                <Scene
+                  key="users"
+                  component={Users}
+                  title="Users"
+                  icon={(props) => <TabIcon {...props} name='ios-contacts'/>}
+                  {...Layout.navigationBar}
+                  />
                 <Scene
                   key="test"
                   component={Test}
                   title="test"
                   icon={() => <Text>Test</Text>}
-                  navigationBarStyle={Layout.scene.navigationBarStyle}
-                  titleStyle={Layout.scene.titleStyle}
+                  {...Layout.navigationBar}
                   />
-          </Scene>
-          <Scene
-            key="room"
-            component={Room}
-            title="Room"
-            navigationBarStyle={Layout.scene.navigationBarStyle}
-            titleStyle={Layout.scene.titleStyle}
-            leftButtonIconStyle={{tintColor:'white'}}/>
+            </Scene>
 
-        </Scene>
-      </Router>
+            <Scene
+              key="room"
+              component={Room}
+              title="Room"
+              {...Layout.navigationBar}
+              leftButtonIconStyle={{tintColor:'white'}}/>
+
+          </Scene>
+        </Router>
+      </Provider>
     );
   }
 }

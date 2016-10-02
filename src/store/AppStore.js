@@ -1,9 +1,9 @@
 import {observable, toJS} from 'mobx';
 
-class SignUpStore {
+class AppStore {
   @observable name = '';
   @observable birthday = new Date();
-  @observable gender = 'Male';
+  @observable gender = 'Homme';
   @observable isHost = false;
 
   getName(){
@@ -12,7 +12,7 @@ class SignUpStore {
 
   setName(value){
     this.name = value;
-  } 
+  }
 
   getValues(){
     return{
@@ -26,4 +26,4 @@ class SignUpStore {
   }
 }
 
-export default new SignUpStore();
+export default new AppStore();

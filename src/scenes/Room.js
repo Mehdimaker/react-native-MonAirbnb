@@ -24,6 +24,7 @@ export default class Room extends React.Component{
           price={price}/>
 
         <View style={styles.container}>
+
           <Headline
             title={title}
             ratingValue={ratingValue}
@@ -35,6 +36,7 @@ export default class Room extends React.Component{
             latitude={location.latitude}
             longitude={location.longitude}/>
           <Book />
+
         </View>
 
       </ScrollView>

@@ -50,7 +50,7 @@ export default class RoomList extends React.Component{
       <View style={[Layout.container, {marginBottom: 44}]}>
         <List
           rooms={this.state.rooms}
-          onPress={(room) => { Actions.room({room}) }}/>
+          onPress={(room) => { Actions.room({room})}}/>
       </View>
     )
   }
